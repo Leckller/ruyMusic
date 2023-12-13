@@ -16,7 +16,9 @@ function FooterHome() {
         className="w-1/3 flex flex-col items-center"
         onClick={ () => navigate('/inicio') }
       >
-        {pathname === '/inicio' ? (<BsHouseDoorFill />) : (<BsHouseDoor />)}
+        <div className="scale-150">
+          {pathname === '/inicio' ? (<BsHouseDoorFill />) : (<BsHouseDoor />)}
+        </div>
         Inicio
 
       </button>
@@ -24,7 +26,9 @@ function FooterHome() {
         className="w-1/3 flex flex-col items-center"
         onClick={ () => navigate('/buscar') }
       >
-        {pathname === '/buscar' ? (<RiSearch2Fill />) : (<RiSearchLine />)}
+        <div className="scale-150">
+          {pathname === '/buscar' ? (<RiSearch2Fill />) : (<RiSearchLine />)}
+        </div>
         Buscar
 
       </button>
@@ -32,7 +36,9 @@ function FooterHome() {
         className="w-1/3 flex flex-col items-center"
         onClick={ () => navigate('/biblioteca') }
       >
-        {pathname === '/biblioteca' ? (<IoLibrary />) : (<IoLibraryOutline />)}
+        <div className="scale-150">
+          {pathname === '/biblioteca' ? (<IoLibrary />) : (<IoLibraryOutline />)}
+        </div>
         Sua Biblioteca
 
       </button>
