@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import FooterHome from './Home/FooterHome';
-import HeaderHome from './Home/HeaderHome';
+import HeaderHome from './Header/HeaderHome';
+import FooterHome from './FooterHome';
 
 function Layout() {
   return (
