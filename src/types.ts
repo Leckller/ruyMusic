@@ -43,7 +43,7 @@ export type GlobalState = {
   AllMusicsReducer: {
     LVA: string[],
     Pesquisas: { search: string, albums: AlbumType[] }[],
-    Loading: boolean,
+    Loading: { [key: string]: boolean },
   }
 };
 

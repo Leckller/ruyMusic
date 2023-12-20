@@ -17,17 +17,18 @@ const fetchAlbumsComplete = (albums: AlbumType[], search: string) => ({
   payload: { albums, search },
 });
 
-const fetchLoadingAlbums = (search: string) => ({
+export const fetchLoadingAlbums = (search: string, boolean: boolean) => ({
   type: ActionsAllMusic.FETCH_LOADING_ALBUMS,
-  payload: search,
+  payload: { search, boolean },
 });
 
 export const fetchAlbums = (search: string) => {
   return async (disp: Dispatch) => {
-    disp(fetchLoadingAlbums(search));
     try {
+      disp(fetchLoadingAlbums(search, true));
       const fetch = await searchAlbumsAPI(search);
       disp(fetchAlbumsComplete(fetch, search));
+      disp(fetchLoadingAlbums(search, false));
     } catch (error: any) {
       // eslint-disable-next-line no-alert
       window.alert(error);

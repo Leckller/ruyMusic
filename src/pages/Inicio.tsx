@@ -1,16 +1,14 @@
 /* eslint-disable max-len */
 
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PlaylistCard from '../components/Inicio/PlaylistCard';
-import { Dispatch, GlobalState } from '../types';
+import { Dispatch } from '../types';
 import DivCarrousel from '../components/Inicio/DivCarrousel';
 import { fetchAlbums } from '../redux/actions/AllMusicsActions';
-import DivLoading from '../components/DivLoading';
 import inicioAlbums from '../utils/inicioAlbums';
 
 function Inicio() {
-  const { Loading } = useSelector((state:GlobalState) => state.AllMusicsReducer);
   const dispatch: Dispatch = useDispatch();
   useEffect(() => {
     inicioAlbums.forEach(({ Sh }) => dispatch(fetchAlbums(Sh)));
@@ -23,10 +21,8 @@ function Inicio() {
         <PlaylistCard title="Músicas Curtidas" />
         <PlaylistCard title="Músicas Curtidas" />
       </section>
-      <section className="flex flex-col">
-        {Loading ? (
-          <DivLoading />
-        ) : (
+      <section className="flex gap-3 mb-10 flex-col">
+        {
           inicioAlbums.map(({ Sh, Ti }) => (
             <DivCarrousel
               albumsSearch={ Sh }
@@ -34,7 +30,7 @@ function Inicio() {
               title={ Ti }
             />
           ))
-        )}
+        }
       </section>
     </main>
   );

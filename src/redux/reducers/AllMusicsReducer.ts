@@ -6,9 +6,9 @@ const { LAST_VISITED_ALBUMS, FETCH_ALBUMS_COMPLETE,
 
 const INITIAL_STATE = {
   // lastVisitedAlbums
+  Loading: {},
   LVA: [],
   Pesquisas: [],
-  Loading: true,
 };
 
 const AllMusicsReducer = (state = INITIAL_STATE, action: AnyAction) => {
@@ -16,14 +16,15 @@ const AllMusicsReducer = (state = INITIAL_STATE, action: AnyAction) => {
     case LAST_VISITED_ALBUMS: {
       if (state.LVA.some((alb) => alb === action.payload)) { return { ...state }; }
       return { ...state, LVA: [...state.LVA, action.payload] }; }
+
     case FETCH_LOADING_ALBUMS: {
-      return { ...state, Loading: true };
-    }
+      const { search, boolean } = action.payload;
+      return { ...state, Loading: { ...state.Loading, [search]: boolean } }; }
+
     case FETCH_ALBUMS_COMPLETE: {
       const { albums, search } = action.payload;
-      return { ...state,
-        Pesquisas: [...state.Pesquisas, { search, albums }],
-        Loading: false }; }
+      return { ...state, Pesquisas: [...state.Pesquisas, { search, albums }] }; }
+
     default: { return { ...state }; }
   }
 };
