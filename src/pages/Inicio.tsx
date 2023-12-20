@@ -1,15 +1,23 @@
 /* eslint-disable max-len */
 
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import PlaylistCard from '../components/Inicio/PlaylistCard';
 import albumGenres from '../services/AlbumGenres';
-import { AlbumType } from '../types';
-import CarrouselAlbums from '../components/Inicio/CarrouselAlbums';
+import { AlbumType, GlobalState } from '../types';
+import AllAlbums from '../services/AllAlbums';
+import DivCarrousel from '../components/Inicio/DivCarrousel';
+import Loading from '../components/Loading';
 
 function Inicio() {
   const [teste, setTeste] = useState<AlbumType[]>([]);
+  const { LVA } = useSelector((state:GlobalState) => state.AllMusicsReducer);
   useEffect(() => {
-    albumGenres('car').then((r) => setTeste(r));
+    albumGenres('rock', 200).then((r) => {
+      setTeste(r);
+      // console.log(r);
+    });
+    AllAlbums(LVA).then((resp) => console.log(resp));
   }, []);
   return (
     <main id="#mainContent" className="min-h-screen flex flex-col gap-5 p-3">
@@ -18,13 +26,11 @@ function Inicio() {
         <PlaylistCard title="Músicas Curtidas" />
         <PlaylistCard title="Músicas Curtidas" />
         <PlaylistCard title="Músicas Curtidas" />
-        <PlaylistCard title="Músicas Curtidas" />
       </section>
       <section className="flex flex-col">
-        <div>
-          <h1 className="font-bold text-lg">Suas músicas estão com saudade</h1>
-          <CarrouselAlbums albums={ teste } />
-        </div>
+        {teste.length !== 0 ? (
+          <DivCarrousel albums={ teste } title="Recomendações" />
+        ) : (<Loading />)}
       </section>
     </main>
   );

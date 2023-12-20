@@ -1,9 +1,9 @@
 import { AlbumType } from '../types';
 
-const albumGenres = async (artist: string): Promise<AlbumType[]> => {
+const albumGenres = async (artist: string, limit = 50): Promise<AlbumType[]> => {
   const artistNameURL = encodeURI(artist);
 
-  const getAlbumsAPI = `https://itunes.apple.com/search?entity=allTrack&term=${artistNameURL}&attribute=genreIndex`;
+  const getAlbumsAPI = `https://itunes.apple.com/search?entity=allTrack&term=${artistNameURL}&attribute=genreIndex&limit=${limit}`;
 
   const APIResponse = await fetch(getAlbumsAPI);
 

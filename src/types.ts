@@ -40,13 +40,8 @@ export type UserType = {
 };
 
 export type GlobalState = {
-  UserReducer: {
-    users: UserType[]
-  },
-  ApiReducer: {
-    loading: boolean,
-    lastSearch: AlbumType[],
-    actualSearch: AlbumType[],
+  AllMusicsReducer: {
+    LVA: string[]
   }
 };
 

@@ -17,9 +17,9 @@ function CarrouselAlbums({ albums }: { albums: AlbumType[] }) {
       className="flex flex-col flex-wrap w-full overflow-x-auto h-64
           gap-3"
     >
-      {albums && albums.slice(0, visible).map((alb) => (
+      {albums && albums.slice(0, visible).map((alb, i) => (
         <Link
-          to={ `/album/${alb.collectionId}` }
+          to={ `/album/${`${alb.collectionId}${i}`}` }
           className="w-[200px] flex flex-col items-center text-start
           animate-opac"
           key={ alb.collectionId }
