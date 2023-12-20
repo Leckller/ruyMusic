@@ -1,11 +1,14 @@
 import { AnyAction } from 'redux';
 import { ActionsAllMusic } from '../actions/AllMusicsActions';
 
-const { LAST_VISITED_ALBUMS } = ActionsAllMusic;
+const { LAST_VISITED_ALBUMS, FETCH_ALBUMS_COMPLETE,
+  FETCH_LOADING_ALBUMS } = ActionsAllMusic;
 
 const INITIAL_STATE = {
   // lastVisitedAlbums
   LVA: [],
+  Pesquisas: [],
+  Loading: true,
 };
 
 const AllMusicsReducer = (state = INITIAL_STATE, action: AnyAction) => {
@@ -13,6 +16,14 @@ const AllMusicsReducer = (state = INITIAL_STATE, action: AnyAction) => {
     case LAST_VISITED_ALBUMS: {
       if (state.LVA.some((alb) => alb === action.payload)) { return { ...state }; }
       return { ...state, LVA: [...state.LVA, action.payload] }; }
+    case FETCH_LOADING_ALBUMS: {
+      return { ...state, Loading: true };
+    }
+    case FETCH_ALBUMS_COMPLETE: {
+      const { albums, search } = action.payload;
+      return { ...state,
+        Pesquisas: [...state.Pesquisas, { search, albums }],
+        Loading: false }; }
     default: { return { ...state }; }
   }
 };

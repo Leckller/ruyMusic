@@ -1,23 +1,19 @@
 /* eslint-disable max-len */
 
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PlaylistCard from '../components/Inicio/PlaylistCard';
-import albumGenres from '../services/AlbumGenres';
-import { AlbumType, GlobalState } from '../types';
-import AllAlbums from '../services/AllAlbums';
+import { Dispatch, GlobalState } from '../types';
 import DivCarrousel from '../components/Inicio/DivCarrousel';
-import Loading from '../components/Loading';
+import { fetchAlbums } from '../redux/actions/AllMusicsActions';
+import DivLoading from '../components/DivLoading';
+import inicioAlbums from '../utils/inicioAlbums';
 
 function Inicio() {
-  const [teste, setTeste] = useState<AlbumType[]>([]);
-  const { LVA } = useSelector((state:GlobalState) => state.AllMusicsReducer);
+  const { Loading } = useSelector((state:GlobalState) => state.AllMusicsReducer);
+  const dispatch: Dispatch = useDispatch();
   useEffect(() => {
-    albumGenres('rock', 200).then((r) => {
-      setTeste(r);
-      // console.log(r);
-    });
-    AllAlbums(LVA).then((resp) => console.log(resp));
+    inicioAlbums.forEach(({ Sh }) => dispatch(fetchAlbums(Sh)));
   }, []);
   return (
     <main id="#mainContent" className="min-h-screen flex flex-col gap-5 p-3">
@@ -28,9 +24,17 @@ function Inicio() {
         <PlaylistCard title="Músicas Curtidas" />
       </section>
       <section className="flex flex-col">
-        {teste.length !== 0 ? (
-          <DivCarrousel albums={ teste } title="Recomendações" />
-        ) : (<Loading />)}
+        {Loading ? (
+          <DivLoading />
+        ) : (
+          inicioAlbums.map(({ Sh, Ti }) => (
+            <DivCarrousel
+              albumsSearch={ Sh }
+              key={ Sh }
+              title={ Ti }
+            />
+          ))
+        )}
       </section>
     </main>
   );

@@ -1,4 +1,4 @@
-function Loading({ size = 'border-[20px]' }: { size?: string }) {
+function DivLoading({ size = 'border-[20px]' }: { size?: string }) {
   return (
     <div
       className={ `rounded-full border-violet-500 h-28 w-28
@@ -7,4 +7,4 @@ function Loading({ size = 'border-[20px]' }: { size?: string }) {
   );
 }
 
-export default Loading;
+export default DivLoading;

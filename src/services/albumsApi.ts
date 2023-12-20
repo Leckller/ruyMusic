@@ -9,7 +9,9 @@ const searchAlbumsAPI = async (artist: string): Promise<AlbumType[]> => {
 
   const { results }: { results: AlbumType[] } = await APIResponse.json();
 
-  const response = results.map((artistInfo) => ({ ...artistInfo }));
+  const response = results.map((artistInfo) => ({
+    ...artistInfo,
+    artworkUrl100: artistInfo.artworkUrl100.replace('100x100', '200x200') }));
   return response;
 };
 
