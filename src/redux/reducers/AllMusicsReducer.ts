@@ -1,11 +1,10 @@
 import { AnyAction } from 'redux';
 import { ActionsAllMusic } from '../actions/AllMusicsActions';
-import { AllMscTypeReducer } from '../../types';
 
 const { LAST_VISITED_ALBUMS, FETCH_ALBUMS_COMPLETE,
   FETCH_LOADING_ALBUMS, FETCH_ID_COMPLETE } = ActionsAllMusic;
 
-const INITIAL_STATE:AllMscTypeReducer = {
+const INITIAL_STATE = {
   // lastVisitedAlbums
   Loading: {},
   LVA: [],
