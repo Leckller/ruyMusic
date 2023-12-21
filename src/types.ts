@@ -8,8 +8,10 @@ export type AlbumType = {
   collectionName: string;
   collectionPrice: number;
   artworkUrl100: string;
+  artworkUrl60: string;
   releaseDate: string;
   trackCount: number;
+  collectionType: string;
   primaryGenreName: string,
 };
 

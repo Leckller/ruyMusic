@@ -16,7 +16,7 @@ function HeaderHome() {
   const { pathname } = useLocation();
   return (
     <header
-      className={ `${pathname.includes('/album') ? 'absolute' : ''}
+      className={ `
        flex flex-row  transition-all justify-around
     ${scrollOn ? 'fixed items-center pt-2 pb-2' : 'h-16 items-end pb-2'}
      w-full bg-black overflow-hidden` }
