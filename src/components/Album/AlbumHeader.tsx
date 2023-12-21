@@ -42,9 +42,11 @@ function AlbumHeader({ album }: { album: AlbumType }) {
           </div>
         </div>
       </section>
-      <section>
-        <button>like</button>
-        <button>options</button>
+      <section className="flex flex-row items-center justify-between p-5">
+        <div className="flex flex-row gap-3">
+          <button>like</button>
+          <button>options</button>
+        </div>
       </section>
     </div>
   );
