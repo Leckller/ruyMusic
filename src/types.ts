@@ -39,12 +39,15 @@ export type UserType = {
   albums: AlbumUserType[],
 };
 
+export type AllMscTypeReducer = {
+  LVA: string[],
+  Pesquisas: { search: string, albums: AlbumType[] }[],
+  Loading: { [key: string]: boolean },
+  ActSearch: [AlbumType, SongType[]],
+};
+
 export type GlobalState = {
-  AllMusicsReducer: {
-    LVA: string[],
-    Pesquisas: { search: string, albums: AlbumType[] }[],
-    Loading: { [key: string]: boolean },
-  }
+  AllMusicsReducer: AllMscTypeReducer
 };
 
 export type Dispatch = ThunkDispatch<GlobalState, null, AnyAction>;

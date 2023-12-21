@@ -19,10 +19,10 @@ function CarrouselAlbums({ albums }: { albums: AlbumType[] }) {
     >
       {albums && albums.slice(0, visible).map((alb, i) => (
         <Link
-          to={ `/album/${`${alb.collectionId}${i}`}` }
+          to={ `/album/${`${alb.collectionId}`}` }
           className="w-[200px] flex flex-col items-center text-start
           animate-opac"
-          key={ alb.collectionId }
+          key={ `${alb.collectionId}${i}` }
         >
           <div className="bg-gray-900 w-full flex items-center justify-center">
             <img

@@ -16,7 +16,8 @@ function HeaderHome() {
   const { pathname } = useLocation();
   return (
     <header
-      className={ `flex flex-row  transition-all justify-around
+      className={ `${pathname.includes('/album') ? 'absolute' : ''}
+       flex flex-row  transition-all justify-around
     ${scrollOn ? 'fixed items-center pt-2 pb-2' : 'h-16 items-end pb-2'}
      w-full bg-black overflow-hidden` }
     >
@@ -26,7 +27,6 @@ function HeaderHome() {
       {(pathname === '/buscar' || pathname === '/biblioteca') && (
         <HeaderBuscarAndBiBlio />
       )}
-
     </header>
   );
 }

@@ -1,17 +1,20 @@
 /* eslint-disable max-len */
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PlaylistCard from '../components/Inicio/PlaylistCard';
-import { Dispatch } from '../types';
+import { Dispatch, GlobalState } from '../types';
 import DivCarrousel from '../components/Inicio/DivCarrousel';
 import { fetchAlbums } from '../redux/actions/AllMusicsActions';
 import inicioAlbums from '../utils/inicioAlbums';
 
 function Inicio() {
   const dispatch: Dispatch = useDispatch();
+  const { Pesquisas } = useSelector((s:GlobalState) => s.AllMusicsReducer);
   useEffect(() => {
-    inicioAlbums.forEach(({ Sh }) => dispatch(fetchAlbums(Sh)));
+    if (!Pesquisas.some((i) => i.search === 'pagode')) {
+      inicioAlbums.forEach(({ Sh }) => dispatch(fetchAlbums(Sh)));
+    }
   }, []);
   return (
     <main id="#mainContent" className="min-h-screen flex flex-col gap-5 p-3">
